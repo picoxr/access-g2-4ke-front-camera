@@ -1,57 +1,19 @@
-
-###  [ `Return` ](https://github.com/PicoSupport/PicoSupport)
+<p align="right"><a href="https://github.com/PicoSupport/PicoSupport" target="_blank">Pico Support Home</a></p>
 
 ## Unity_Demo_GetPhoneCameraImageDemo
 
-## Unity_Versions：
-- 2017.1.0f3 Or UP
+## Unity Versions：
+- 2017.1.0f3 and later
 
-## Explain：
+## Description：
 
 - Access the front camera of the pico device
 
 Demo Main Code **GetPhoneCameraImageDemo.cs**
 
-```C#
-public class GetPhoneCameraImageDemo : MonoBehaviour
-{   
-    public RawImage rawImage;
-    private string deviceName;
-    private WebCamTexture webCam;
-    void Start()
-    {
-        StartCoroutine(Call());
-    }
-    public IEnumerator Call()
-    {
-        // Apply for permission 
-        //UserAuthorization.WebCam 
-        yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
-        
-        if (Application.HasUserAuthorization(UserAuthorization.WebCam))
-        {
-            // Get camera device 
-            WebCamDevice[] devices = WebCamTexture.devices;
 
-            // get the first camera name 
-            deviceName = devices[0].name;
-
-            // create a WebCamTexture 
-            webCam = new WebCamTexture(deviceName, Screen.width, Screen.height, 60);
-
-            // set the texture to rawImage in the scene 
-            rawImage.texture = webCam;
-
-            // enable camera
-            webCam.Play();
-        }
-    }
-}
-
-```
-
-## Use：
-- DemoScene： Assets -> DemoScene -> GetPhoneCameraImageDemo
+## Usage：
+- Scene： Assets -> DemoScene -> GetPhoneCameraImageDemo
 - Pack Apk file, open in pico device, can see the camera screen
 
 ## Announcements：
