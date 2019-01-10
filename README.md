@@ -14,8 +14,7 @@ Demo Main Code **GetPhoneCameraImageDemo.cs**
 
 ## Usage：
 - Scene： Assets -> DemoScene -> GetPhoneCameraImageDemo
-- Pack Apk file, open in pico device, can see the camera screen
 
-## Announcements：
+- Pack Apk file, open in pico device, can see the camera screen
 - Demo apply to Pico G2 Pro
 
