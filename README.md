@@ -7,14 +7,9 @@
 
 ## Description：
 
-- Access the front camera of the pico device
-
-Demo Main Code **GetPhoneCameraImageDemo.cs**
+- This demo shows how to access Pico G2 Pro camera in Unity project. Please refer to the codes in GetPhoneCameraImageDemo.cs script.
+-	Please note the demo is for Pico G2 Pro only.
 
 
 ## Usage：
 - Scene： Assets -> DemoScene -> GetPhoneCameraImageDemo
-
-- Pack Apk file, open in pico device, can see the camera screen
-- Demo apply to Pico G2 Pro
-
