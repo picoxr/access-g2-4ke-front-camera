@@ -6,9 +6,7 @@ using UnityEngine.UI;
 public class GetPhoneCameraImageDemo : MonoBehaviour
 {   
     public RawImage rawImage;
-    /// <summary>
-    /// 设备名字
-    /// </summary>
+    //device name
     private string deviceName;
     private WebCamTexture webCam;
     
@@ -24,8 +22,7 @@ public class GetPhoneCameraImageDemo : MonoBehaviour
 
     public IEnumerator Call()
     {
-        // Apply for permission 征求许可
-        //UserAuthorization.WebCam 用户授权 摄像机 请求用户授权
+        // Apply for permission 获取权限
         yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
         
         if (Application.HasUserAuthorization(UserAuthorization.WebCam))
