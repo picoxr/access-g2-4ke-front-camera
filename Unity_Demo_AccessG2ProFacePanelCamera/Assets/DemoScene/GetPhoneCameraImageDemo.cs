@@ -41,7 +41,7 @@ public class GetPhoneCameraImageDemo : MonoBehaviour
 
             // set the texture to rawImage in the scene 在场景中设置纹理为rawImage
             rawImage.texture = webCam;
-
+           
             // enable camera
             webCam.Play();
         }
