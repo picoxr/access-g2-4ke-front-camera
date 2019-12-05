@@ -2,7 +2,7 @@
 ## Unity_Demo_AccessG2ProFacePanelCamera
 
 ## Unity Versions：
-- 2017.1.0f3 and later
+- 2017.4 and later
 
 ## Description：
 
