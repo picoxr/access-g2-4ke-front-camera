@@ -6,5 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/DemoScene/GetPhoneCameraImageDemo.unity
+    path: Assets/PicoMobileSDK/Pvr_Controller/Scenes/Pvr_Controller_UI.unity
     guid: 906c9956d7f4d5548a252a36a6214f30
+  m_configObjects: {}

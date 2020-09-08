@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// Copyright  2015-2020 Pico Technology Co., Ltd. All Rights Reserved.
+
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -212,6 +215,7 @@ public class Pvr_InputModule : PointerInputModule
                 break;
         }
     }
+
     protected virtual void ClickOnUp(Pvr_UIPointer pointer, List<RaycastResult> results)
     {
         pointer.pointerEventData.eligibleForClick = pointer.ValidClick(false);
@@ -221,6 +225,7 @@ public class Pvr_InputModule : PointerInputModule
             IsEligibleClick(pointer, results);
         }
     }
+
 
     protected virtual void ClickOnDown(Pvr_UIPointer pointer, List<RaycastResult> results, bool forceClick = false)
     {
@@ -249,6 +254,7 @@ public class Pvr_InputModule : PointerInputModule
                     pointer.pointerEventData.pressPosition = pointer.pointerEventData.position;
                     pointer.pointerEventData.pointerPressRaycast = result;
                     pointer.pointerEventData.pointerPress = target;
+                    pointer.pressToDrag = false;
                     return true;
                 }
             }
@@ -277,8 +283,11 @@ public class Pvr_InputModule : PointerInputModule
             }
             else
             {
+                if (!pointer.pressToDrag)
+                {
+                    ExecuteEvents.ExecuteHierarchy(pointer.pointerEventData.pointerPress, pointer.pointerEventData, ExecuteEvents.pointerClickHandler);
+                }
                 pointer.OnUIPointerElementClick(pointer.SetUIPointerEvent(pointer.pointerEventData.pointerPressRaycast, pointer.pointerEventData.pointerPress));
-                ExecuteEvents.ExecuteHierarchy(pointer.pointerEventData.pointerPress, pointer.pointerEventData, ExecuteEvents.pointerClickHandler);
                 ExecuteEvents.ExecuteHierarchy(pointer.pointerEventData.pointerPress, pointer.pointerEventData, ExecuteEvents.pointerUpHandler);
                 pointer.pointerEventData.pointerPress = null;
             }
@@ -302,6 +311,12 @@ public class Pvr_InputModule : PointerInputModule
             {
                 if (IsHovering(pointer))
                 {
+                    if (pointer.pointerEventData.pointerPress.transform.IsChildOf(pointer.pointerEventData.pointerDrag.transform))
+                    {
+                        ExecuteEvents.ExecuteHierarchy(pointer.pointerEventData.pointerPress, pointer.pointerEventData, ExecuteEvents.pointerUpHandler);
+                        pointer.pointerEventData.eligibleForClick = false;
+                        pointer.pressToDrag = true;
+                    }
                     ExecuteEvents.ExecuteHierarchy(pointer.pointerEventData.pointerDrag, pointer.pointerEventData, ExecuteEvents.dragHandler);
                 }
             }
@@ -314,6 +329,7 @@ public class Pvr_InputModule : PointerInputModule
                     ExecuteEvents.ExecuteHierarchy(raycast.gameObject, pointer.pointerEventData, ExecuteEvents.dropHandler);
                 }
                 pointer.pointerEventData.pointerDrag = null;
+
             }
         }
         else if (pointer.pointerEventData.dragging)
