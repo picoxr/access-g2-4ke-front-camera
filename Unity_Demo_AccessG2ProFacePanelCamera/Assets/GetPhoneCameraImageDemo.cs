@@ -43,4 +43,5 @@ public class GetPhoneCameraImageDemo : MonoBehaviour
             webCam.Play();
         }
     }
+
 }
