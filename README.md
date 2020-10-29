@@ -10,3 +10,6 @@
 
 ## Usage：
 - Scene： Assets -> DemoScene -> GetPhoneCameraImageDemo
+Press the keys on HMD to zoom in or out.
+App key: Zoom in
+Confirm key: Zoom out
