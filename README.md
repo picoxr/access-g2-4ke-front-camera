@@ -1,12 +1,11 @@
-
-## Access Face Panel Camera
+# Access 4KE front Camera
 
 ## Unity Versions：
 - 2019.4.12f1 and later
 
 ## Description：
 
-- This demo shows how to access Pico G2 4K enterprise's camera in Unity project. Please refer to the codes in **GetPhoneCameraImageDemo.cs** script.
+- This demo shows how to access Pico G2 4KE's camera in Unity project. Please refer to the codes in **GetPhoneCameraImageDemo.cs** script.
 
 ## Usage：
 - Scene： Assets -> DemoScene -> GetPhoneCameraImageDemo
