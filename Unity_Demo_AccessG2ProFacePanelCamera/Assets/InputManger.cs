@@ -7,22 +7,35 @@ using UnityEngine.UI;
 public class InputManger : MonoBehaviour
 {
 
-    //所有数值根据实际情况进行计算
+  
     public RectTransform rawImage;
     public RectTransform Images;
-    public Vector2 vector;
-    public Vector2 vector2;
+    public Vector2 rawImagevector;
+    public Vector2 Imagesvector;
+
+
+    //Every time I scale it
+    public float ImagesvectorHeight;
+    public float ImagesvectorWidth;
+
+
+
+    //The number of times you can press it
+    public int number = 10;
+
+
+
     private void Awake()
     {
-        vector = rawImage.sizeDelta;
-        vector2 = Images.sizeDelta;
+        rawImagevector = rawImage.sizeDelta;
+        Imagesvector = Images.sizeDelta;
+        ImagesvectorHeight = Images.rect.height/10;
+        ImagesvectorWidth = Images.rect.width/10;
+      
 
     }
     // Start is called before the first frame update
-    void Start()
-    {
-    
-    }
+   
 
     // Update is called once per frame
     void Update()
@@ -34,28 +47,28 @@ public class InputManger : MonoBehaviour
          
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("1");
-            //设定最大放大倍率
-            if (vector.x >= (vector2.x + (18 * 10)) || vector.y >= (vector2.y + (26 * 10)))
+
+            //Determine whether the maximum multiple is reached
+            if (rawImagevector.x >= (Imagesvector.x + (ImagesvectorWidth * number)) || rawImagevector.y >= (Imagesvector.y + (ImagesvectorHeight * number)))
             {
-                Debug.Log("2");
+               
                 return;
             }
-            rawImage.sizeDelta = new Vector2(vector.x +18, vector.y +26);
-            vector = rawImage.sizeDelta;
+            rawImage.sizeDelta = new Vector2(rawImagevector.x + ImagesvectorWidth, rawImagevector.y + ImagesvectorHeight);
+            rawImagevector = rawImage.sizeDelta;
        
         }
         else if(Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
-            //判断最小照片大小
-            if(vector.x-18==vector2.x|| vector.y-26==vector2.y)
+            //Determine if minification is disabled
+            if (rawImagevector.x == Imagesvector.x|| rawImagevector.y == Imagesvector.y)
             {
                 return;
             }
 
 
-            rawImage.sizeDelta = new Vector2(vector.x -18, vector.y -26);
-            vector = rawImage.sizeDelta;
+            rawImage.sizeDelta = new Vector2(rawImagevector.x - ImagesvectorWidth, rawImagevector.y - ImagesvectorHeight);
+            rawImagevector = rawImage.sizeDelta;
         }
     }
 }
