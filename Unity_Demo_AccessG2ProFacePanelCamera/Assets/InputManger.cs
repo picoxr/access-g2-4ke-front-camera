@@ -4,71 +4,70 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+
 public class InputManger : MonoBehaviour
-{
-
-  
+{  
     public RectTransform rawImage;
-    public RectTransform Images;
-    public Vector2 rawImagevector;
-    public Vector2 Imagesvector;
+    public RectTransform Image;
+    public Vector2 RawImageVector;
+    public Vector2 ImageVector;
+    
+    //zoom in/out scale
+    private float ScaleHeight;
+    private float ScaleWidth;
+    private Vector2 AddScale;
+    private int IsClick=0;
 
-
-    //Every time I scale it
-    public float ImagesvectorHeight;
-    public float ImagesvectorWidth;
-
-
-
-    //The number of times you can press it
-    public int number = 10;
+    
+    private const int KEY_COUNTER = 10;
 
 
 
     private void Awake()
     {
-        rawImagevector = rawImage.sizeDelta;
-        Imagesvector = Images.sizeDelta;
-        ImagesvectorHeight = Images.rect.height/10;
-        ImagesvectorWidth = Images.rect.width/10;
-      
-
+        RawImageVector = rawImage.sizeDelta;
+        ImageVector = Image.sizeDelta;
+        ScaleHeight = Image.rect.height/10;
+        ScaleWidth = Image.rect.width/10;
     }
-    // Start is called before the first frame update
-   
 
-    // Update is called once per frame
-    void Update()
-    {
+    private void Update()
+    {      
         PicoInput();
     }
     public void PicoInput()
     {
-         
+       
+        // Press Back button on HMD 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-
-            //Determine whether the maximum multiple is reached
-            if (rawImagevector.x >= (Imagesvector.x + (ImagesvectorWidth * number)) || rawImagevector.y >= (Imagesvector.y + (ImagesvectorHeight * number)))
+            if(IsClick==KEY_COUNTER)
             {
-               
                 return;
             }
-            rawImage.sizeDelta = new Vector2(rawImagevector.x + ImagesvectorWidth, rawImagevector.y + ImagesvectorHeight);
-            rawImagevector = rawImage.sizeDelta;
-       
+            if (IsClick < KEY_COUNTER)
+            {
+                IsClick += 1;
+                AddScale.Set(RawImageVector.x + ScaleWidth, RawImageVector.y + ScaleHeight);
+                rawImage.sizeDelta = AddScale;
+                RawImageVector = rawImage.sizeDelta;
+            }
+         
         }
-        else if(Input.GetKeyDown(KeyCode.Joystick1Button0))
+        // Press Confirm button on HMD 
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
-            //Determine if minification is disabled
-            if (rawImagevector.x == Imagesvector.x|| rawImagevector.y == Imagesvector.y)
+            if (IsClick == 0)
             {
                 return;
+            }           
+            if (IsClick>0)
+            {
+                IsClick -= 1;
+                AddScale.Set(RawImageVector.x - ScaleWidth, RawImageVector.y - ScaleHeight);
+                rawImage.sizeDelta = AddScale;
+                RawImageVector = rawImage.sizeDelta;
             }
-
-
-            rawImage.sizeDelta = new Vector2(rawImagevector.x - ImagesvectorWidth, rawImagevector.y - ImagesvectorHeight);
-            rawImagevector = rawImage.sizeDelta;
         }
     }
 }
