@@ -1069,9 +1069,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rawImage: {fileID: 1993323962}
-  Images: {fileID: 421874132}
-  vector: {x: 0, y: 0}
-  vector2: {x: 0, y: 0}
+  Image: {fileID: 421874132}
+  RawImageVector: {x: 0, y: 0}
+  ImageVector: {x: 0, y: 0}
 --- !u!4 &1875957741
 Transform:
   m_ObjectHideFlags: 0
