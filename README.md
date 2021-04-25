@@ -12,3 +12,6 @@
 Press the keys on HMD to zoom in or out.
 App key: Zoom in
 Confirm key: Zoom out
+
+## Note:
+- If you have any questions/comments, please raise requests at [**PicoDevSupport Portal**](https://picodevsupport.atlassian.net/servicedesk/customer/user/login?
