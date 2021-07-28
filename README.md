@@ -1,5 +1,7 @@
 # Access G2 4KE front Camera
 
+- If you have any questions/comments, please visit [**Pico Developer Answers**](https://devanswers.pico-interactive.com/) and raise your question there.
+
 ## Unity Versions：
 - 2019.4.12f1 and later
 
@@ -12,6 +14,3 @@
 Press the keys on HMD to zoom in or out.
 App key: Zoom in
 Confirm key: Zoom out
-
-## Note:
-- If you have any questions/comments, please raise requests at [**PicoDevSupport Portal**](https://picodevsupport.atlassian.net/servicedesk/customer/user/login?
